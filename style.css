@@ -1,5 +1,6 @@
 *{
     margin: 0%;
+    font-family: "consolas";
 }
 
 canvas {
@@ -153,7 +154,7 @@ button:hover{
 .left_tag{
   /*font-size: 24px;*/
   display: inline-block;
-  min-width: 110px;
+  min-width: 140px;
 }
 
 .slider{
@@ -167,6 +168,19 @@ button:hover{
 }
 .slider:hover{
     opacity: 1;
+}
+
+.black_to_red{
+  background-image: linear-gradient(to right, black, red);
+}
+.black_to_green{
+  background-image: linear-gradient(to right, black, green);
+}
+.black_to_blue{
+  background-image: linear-gradient(to right, black, blue);
+}
+.black_to_white{
+  background-image: linear-gradient(to right, black, white);
 }
 
 .slider::-webkit-slider-thumb {

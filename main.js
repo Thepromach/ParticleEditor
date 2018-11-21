@@ -23,20 +23,20 @@ var My_Menu = {
                       </select>
                       <div><span class="left_tag">Width:</span> <input v-model.number="emitter.particle_width" class="slider"  type="range" min="0.01" max="1.0" step="0.05"></div>
                       <div><span class="left_tag">Height:</span> <input v-model.number="emitter.particle_height" class="slider"  type="range" min="0.01" max="1.0" step="0.05"></div>
-                      <div><span class="left_tag">Dir X: {{emitter.dirX0}}</span> <input v-model.number="emitter.dirX0" type="range" min="-1.0" max="1.0" step="0.1"></div>
-                      <div><span class="left_tag">Range: {{emitter.dirX1}}</span> <input v-model.number="emitter.dirX1" type="range" min="-1.0" max="1.0" step="0.1"></div>
-                      <div><span class="left_tag">Dir Y: {{emitter.dirY0}}</span> <input v-model.number="emitter.dirY0" type="range" min="-1.0" max="1.0" step="0.1"></div>
-                      <div><span class="left_tag">Range: {{emitter.dirY1}}</span> <input v-model.number="emitter.dirY1" type="range" min="-1.0" max="1.0" step="0.1"></div>
+                      <div><span class="left_tag">DirX: {{emitter.dirX0}}</span> <input v-model.number="emitter.dirX0" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
+                      <div><span class="left_tag">Range: {{emitter.dirX1}}</span> <input v-model.number="emitter.dirX1" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
+                      <div><span class="left_tag">DirY: {{emitter.dirY0}}</span> <input v-model.number="emitter.dirY0" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
+                      <div><span class="left_tag">Range: {{emitter.dirY1}}</span> <input v-model.number="emitter.dirY1" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
                       <h4>Start Color:</h4>
-                        <div><span class="left_tag">Red: {{emitter.start_color[0]}}</span> <input v-model.number="emitter.start_color[0]" type="range" min="0.0" max="1.0" step="0.05"></div>
-                        <div><span class="left_tag">Green: {{emitter.start_color[1]}}</span> <input v-model.number="emitter.start_color[1]" type="range" min="0.0" max="1.0" step="0.05"></div>
-                        <div><span class="left_tag">Blue: {{emitter.start_color[2]}}</span> <input v-model.number="emitter.start_color[2]" type="range" min="0.0" max="1.0" step="0.05"></div>
-                        <div><span class="left_tag">Alpha: {{emitter.start_color[3]}}</span> <input v-model.number="emitter.start_color[3]" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left_tag">Red: {{emitter.start_color[0]}}</span> <input v-model.number="emitter.start_color[0]" class="slider black_to_red" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left_tag">Green: {{emitter.start_color[1]}}</span> <input v-model.number="emitter.start_color[1]" class="slider black_to_green" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left_tag">Blue: {{emitter.start_color[2]}}</span> <input v-model.number="emitter.start_color[2]" class="slider black_to_blue" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left_tag">Alpha: {{emitter.start_color[3]}}</span> <input v-model.number="emitter.start_color[3]" class="slider black_to_white" type="range" min="0.0" max="1.0" step="0.05"></div>
                       <h4>End Color:</h4>
-                        <div><span class="left_tag">Red: {{emitter.end_color[0]}}</span> <input v-model.number="emitter.end_color[0]" type="range" min="0.0" max="1.0" step="0.05"></div>
-                        <div><span class="left_tag">Green: {{emitter.end_color[1]}}</span> <input v-model.number="emitter.end_color[1]" type="range" min="0.0" max="1.0" step="0.05"></div>
-                        <div><span class="left_tag">Blue: {{emitter.end_color[2]}}</span> <input v-model.number="emitter.end_color[2]" type="range" min="0.0" max="1.0" step="0.05"></div>
-                        <div><span class="left_tag">Alpha: {{emitter.end_color[3]}}</span>  <input v-model.number="emitter.end_color[3]" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left_tag">Red: {{emitter.end_color[0]}}</span> <input v-model.number="emitter.end_color[0]" class="slider black_to_red" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left_tag">Green: {{emitter.end_color[1]}}</span> <input v-model.number="emitter.end_color[1]" class="slider black_to_green" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left_tag">Blue: {{emitter.end_color[2]}}</span> <input v-model.number="emitter.end_color[2]" class="slider black_to_blue" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left_tag">Alpha: {{emitter.end_color[3]}}</span>  <input v-model.number="emitter.end_color[3]" class="slider black_to_white" type="range" min="0.0" max="1.0" step="0.05"></div>
                     </div>
                 </div></transition></div>`,
     data() {
