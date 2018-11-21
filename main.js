@@ -337,6 +337,7 @@ Vue.component('gl_canvas',{
                     emitter.particles[i].live_time -= 1 * deltaTime; //update live time
                     if(emitter.particles[i].live_time <= 0){ //check if particle is live
                         emitter.particles.splice(i, 1); //delete particle
+                        i--;
                         continue;
                     }
 
