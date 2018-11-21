@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="particle.js"></script>
+        <script src="emitter.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Particle editor</title>
+    </head>
+
+    <body>
+        <div id="app" v-on:mousemove="move">
+
+            <gl_canvas id="glCanvas"></gl_canvas>
+            <div id="infoBox">
+              Add menu and emitter by pressing this button
+              <button v-on:click="createMenu">Add</button>
+              <div id="errorBox" hidden></div>
+            </div>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>
