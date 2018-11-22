@@ -19,8 +19,8 @@ var My_Menu = {
                     <h2 v-on:mouseup="stopDrag" v-on:mousedown="startDrag"><button v-on:click="deleteEmitter">X</button> Emitter: {{title}}</h2>
                     <p>X: {{emitter.x}} Y: {{emitter.y}}</p> <p> <input v-model.number="emitter.x" class="slider" type="range" min="-2.0" max="2.0" step="0.1">
                     <input v-model.number="emitter.y" class="slider"  type="range" min="-2.0" max="2.0" step="0.1"></p>
-                    <div>Width: <input v-model.number="emitter.width" class="slider"  type="range" min="0.01" max="2.0" step="0.1"></div>
-                    <div>Height: <input v-model.number="emitter.height" class="slider"  type="range" min="0.01" max="2.0" step="0.1"></div>
+                    <div>Width: <input v-model.number="emitter.width" class="slider"  type="range" min="0.01" max="2.0" step="0.01"></div>
+                    <div>Height: <input v-model.number="emitter.height" class="slider"  type="range" min="0.01" max="2.0" step="0.01"></div>
                     Spawn Delay: <input v-model.number="emitter.spawn_time" @keyup="spawnTimeValid" min="0.01">
                     <h3 v-on:click="hideParticle">
                       <span  v-if="hidden">&#8680;</span >
@@ -34,8 +34,8 @@ var My_Menu = {
                             {{textures[n-1].name}}
                           </option>
                       </select>
-                      <div><span class="left-tag">Width:</span> <input v-model.number="emitter.particle_width" class="slider"  type="range" min="0.01" max="1.0" step="0.05"></div>
-                      <div><span class="left-tag">Height:</span> <input v-model.number="emitter.particle_height" class="slider"  type="range" min="0.01" max="1.0" step="0.05"></div>
+                      <div><span class="left-tag">Width:</span> <input v-model.number="emitter.particle_width" class="slider"  type="range" min="0.01" max="1.0" step="0.01"></div>
+                      <div><span class="left-tag">Height:</span> <input v-model.number="emitter.particle_height" class="slider"  type="range" min="0.01" max="1.0" step="0.01"></div>
                       <div><span class="left-tag">DirX: {{emitter.dirX0}}</span> <input v-model.number="emitter.dirX0" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
                       <div><span class="left-tag">Range: {{emitter.dirX1}}</span> <input v-model.number="emitter.dirX1" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
                       <div><span class="left-tag">DirY: {{emitter.dirY0}}</span> <input v-model.number="emitter.dirY0" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
@@ -149,6 +149,7 @@ var My_Menu = {
             return;
           }
           error_box.hidden = true;
+          this.emitter.timer = 0;
         }
     }
 };

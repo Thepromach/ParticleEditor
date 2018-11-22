@@ -99,7 +99,7 @@ button:hover{
     user-select:none;
     -o-user-select:none;
     top: 0px;
-    min-width: 250px;
+    min-width: 300px;
     max-width: 300px;
 }
 
