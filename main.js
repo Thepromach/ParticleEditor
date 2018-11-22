@@ -1,5 +1,18 @@
 
 
+/**
+ * Sending error to error_box
+ * @param {String} error error message that we want to send
+ * @param {Array<Number>} error_box div that we want to append the error message
+ */
+function sendErrorMessage(error, error_box){
+  error_box.hidden = false;
+  var error_message = document.createElement("p");
+  error_message.innerHTML = error;
+  error_box.appendChild(error_message);
+}
+
+
 var My_Menu = {
     props: ["title"],
     template: `<div class="menu" v-bind:id="title"><transition name="fade"><div v-show="show">
@@ -97,19 +110,16 @@ var My_Menu = {
             error_box.removeChild(error_box.firstChild);
           }
           if(isNaN(this.emitter.spawn_time)){
-            error_box.hidden = false;
-            var error_message = document.createElement("p");
-            error_message.innerHTML = "Spawn delay must be number";
-            error_box.appendChild(error_message);
+            sendErrorMessage("Spawn delay must be number",error_box);
             this.emitter.spawn_time = 0;
+            return;
           }
           else if(this.emitter.spawn_time < 0){
-            error_box.hidden = false;
-            var error_message = document.createElement("p");
-            error_message.innerHTML = "Spawn delay must be positive";
-            error_box.appendChild(error_message);
+            sendErrorMessage("Spawn delay must be positive", error_box);
             this.emitter.spawn_time = 0;
+            return;
           }
+          error_box.hidden = true;
         }
     }
 };
@@ -144,7 +154,7 @@ Vue.component('gl_canvas',{
             vertex_buffer : undefined,
             index_buffer : undefined,
             texture_buffer : undefined,
-            emitters : [],
+            emitters : new Array(),
             then : 0,
         };
     },
@@ -168,32 +178,35 @@ Vue.component('gl_canvas',{
               if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
                   var jsonObj = JSON.parse(xmlhttp.responseText);
                   var i = 0;
+                  var counter = 0;
                   while(self.$data.textures.length < 5){
                       i = Math.floor(Math.random() * jsonObj.length);
-                      //i++;
-                  //for(var i = 0; i < Math.min(5, jsonObj.length); i++){
-                      /*if(i == 0){
-                        var xmlhttp2 = new XMLHttpRequest();
+                      var xmlhttp2 = new XMLHttpRequest();
 
-                        xmlhttp2.open("GET", "http://api.imagga.com/v2/tags?image_url=" + "https://picsum.photos/1024/1024?image=" + jsonObj[i].id);
-                        xmlhttp2.setRequestHeader("accept","application/json");
-                        xmlhttp2.setRequestHeader("authorization","Basic YWNjX2JiODIxNjM3MDI5OWU2MjplY2YwMDliM2QyN2MzZDliYTlmMGMyZGNlMDk5ODY4Zg==");
+                      xmlhttp2.open("GET", "https://api.imagga.com/v2/tags?image_url=" + "https://picsum.photos/1024/1024?image=" + jsonObj[i].id);
+                      xmlhttp2.setRequestHeader("accept","application/json");
+                      xmlhttp2.setRequestHeader("authorization","Basic YWNjX2JiODIxNjM3MDI5OWU2MjplY2YwMDliM2QyN2MzZDliYTlmMGMyZGNlMDk5ODY4Zg==");
 
-                        xmlhttp2.onreadystatechange = (function(self, i){
-                            return function(){
-                                if(self.readyState == 4 && self.status == 200){
-                                    var jsonObj2 = JSON.parse(self.responseText);
-                                    canvas.$data.textures[i].name = jsonObj2.result.tags[0].tag.en;
-                                    console.log(canvas.$data.textures[i].name);
-                                }
-                            }
-                        })(xmlhttp2, i);
-                        xmlhttp2.send();
-                      }*/
-                      //xmlhttplist[i].send(JSON.stringify({"url" : "https://picsum.photos/1024/1024?image=" + jsonObj[i].id}));
+                      xmlhttp2.onreadystatechange = (function(self, i){
+                          return function(){
+                              if(self.readyState == 4 && self.status == 200){
+                                  var jsonObj2 = JSON.parse(self.responseText);
+                                  canvas.__vue__.textures[i].name = jsonObj2.result.tags[0].tag.en;
+                              }
+                              else if(self.status == 403){
+                                var error_box = document.getElementById("errorBox");
+                                sendErrorMessage("Failed to get texture name from imagga", error_box);
+                              }
+                          }
+                      })(xmlhttp2, counter);
 
-
-                      self.$data.textures.push({name : "aaa", filename : jsonObj[i].filename, id : jsonObj[i].id,
+                      setTimeout((function(xmlhttp2) {
+                        return function(){
+                          xmlhttp2.send();
+                        }
+                      })(xmlhttp2), 1000 * counter);
+                      counter++;
+                      self.$data.textures.push({name : "unknown", filename : jsonObj[i].filename, id : jsonObj[i].id,
                                                 opengl_id: self.loadTexture(self.$data.gl, "https://picsum.photos/1024/1024?image=" + jsonObj[i].id)});
                   }
 
@@ -206,7 +219,8 @@ Vue.component('gl_canvas',{
       this.gl.viewport(0,0,canvas.width,canvas.height); //setting viewport
       this.gl.enable(this.gl.BLEND); //enable blend
       this.gl.depthMask(false); //disable depth mask
-      this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA); //setting blend function
+      this.gl.blendFuncSeparate(this.gl.SRC_ALPHA, this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA, this.gl.ONE); //setting blend function
+      this.gl.blendEquation(this.gl.FUNC_ADD);
 
       this.vertex_buffer = this.gl.createBuffer(); //creating buffer for verteces
       this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vertex_buffer); //using vertex buffer
@@ -229,6 +243,11 @@ Vue.component('gl_canvas',{
     },
     methods : {
         createShader : function(){
+
+            if(!this.gl){
+              //Error
+            }
+
             var vertCode =
                 'attribute vec2 textureCoord;' +        //texture coordinates using indeces
                 'attribute vec2 coordinates;' +         //vertex coordinates using indeces
@@ -286,13 +305,21 @@ Vue.component('gl_canvas',{
         },
         drawFrame : function(now){
 
+            if(!this.gl){
+              //Error
+            }
+
             now *= 0.001; //make sure now is nanoseconds
             const deltaTime = now - this.then; //create deltaTime
             this.then = now; //set last time
 
             this.gl.useProgram(this.shader.program); //use shader program
-            this.gl.clearColor(1.0, 1.0, 1.0, 1.0); //set clear color to white
+            this.gl.clearColor(0.0, 0.0, 0.0, 1.0); //set clear color to white
             this.gl.clear(this.gl.COLOR_BUFFER_BIT); //clear color buffer
+
+
+
+
 
             this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, this.index_buffer); //set indices
 
@@ -304,6 +331,15 @@ Vue.component('gl_canvas',{
             this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vertex_buffer); //bind vertices
             this.gl.vertexAttribPointer(this.shader.coord, 2, this.gl.FLOAT, false, 0, 0); //set shader coord
             this.gl.enableVertexAttribArray(this.shader.coord); //enable coord
+
+
+            this.gl.activeTexture(this.gl.TEXTURE0); //active texture 0
+            this.gl.bindTexture(this.gl.TEXTURE_2D, this.textures[0].opengl_id); //bind current texture
+            this.gl.uniform1i(this.shader.texture_uniform, 0);
+
+
+
+
 
 
             for(var ii = 0; ii < this.emitters.length; ii++){
@@ -368,15 +404,10 @@ Vue.component('gl_canvas',{
                 img.addEventListener('load', function() { //add load function
                     gl.bindTexture(gl.TEXTURE_2D, texture); //bind texture for use
                     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img); //set image to texture
-                    //if (isPowerOf2(img.width) && isPowerOf2(img.height)) { //if image is power 2
-                        // Power of 2 can be just mipmap no texture warping or filter needed
-                        //gl.generateMipmap(gl.TEXTURE_2D);
-                    //} else {
-                        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); //we want to wrap to edge all cases
-                        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-                        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); //also use linear filtering
-                        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-                    //}
+                    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); //we want to wrap to edge all cases
+                    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+                    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); //also use linear filtering
+                    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
                 });
                 img.crossOrigin = ""; //We are okey whit cross Origin images even to webGL doesn't like that
                 img.src = url; //set image src to url
@@ -403,7 +434,6 @@ var app = new Vue({
         setTimeout(this.setMenu, 100);
     },
     methods: {
-
         setMenu : function(){
           var textures = document.getElementById("glCanvas").__vue__.$data.textures;
 
@@ -423,27 +453,6 @@ var app = new Vue({
           instance.$mount();
           this.$el.appendChild(instance.$el);
         },
-
-        //Test if value is number and positive
-        checkNumberValue : function(error_div, value, value_name){
-            //if number is [Not an Number]
-            var error_message = "";
-            if(isNaN(value)){
-                error_message = document.createElement("p"); //create p element
-                error_message.innerHTML = "*" + value_name +" must be number"; //write error message
-                error_div.appendChild(error_message); //add error_message to error_div
-                return false; //return that number is not valid
-            }
-            else if(value < 0){
-                error_message = document.createElement("p"); //create p element
-                error_message.innerHTML = "*" + value_name + " must be positive"; //write error message
-                error_div.appendChild(error_message); //add error_message to error_div
-                return false; //return that number is not valid
-            }
-            return true;
-        },
-
-
         move : function(event){
             menus = document.getElementsByClassName("menu");
             if(menus){
