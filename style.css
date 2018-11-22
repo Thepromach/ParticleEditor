@@ -151,7 +151,7 @@ button:hover{
     color: #FFF;
 }
 
-.left_tag{
+.left-tag{
   /*font-size: 24px;*/
   display: inline-block;
   min-width: 140px;
@@ -170,16 +170,16 @@ button:hover{
     opacity: 1;
 }
 
-.black_to_red{
+.black-to-red{
   background-image: linear-gradient(to right, black, red);
 }
-.black_to_green{
+.black-to-green{
   background-image: linear-gradient(to right, black, green);
 }
-.black_to_blue{
+.black-to-blue{
   background-image: linear-gradient(to right, black, blue);
 }
-.black_to_white{
+.black-to-white{
   background-image: linear-gradient(to right, black, white);
 }
 

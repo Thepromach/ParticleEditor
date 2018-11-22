@@ -2,8 +2,8 @@
 
 /**
  * Sending error to error_box
- * @param {String} error error message that we want to send
- * @param {Array<Number>} error_box div that we want to append the error message
+ * @param {String} error Error message that we want to send
+ * @param {Array<Number>} error_box Div that we want to append the error message
  */
 function sendErrorMessage(error, error_box){
   error_box.hidden = false;
@@ -34,29 +34,29 @@ var My_Menu = {
                             {{textures[n-1].name}}
                           </option>
                       </select>
-                      <div><span class="left_tag">Width:</span> <input v-model.number="emitter.particle_width" class="slider"  type="range" min="0.01" max="1.0" step="0.05"></div>
-                      <div><span class="left_tag">Height:</span> <input v-model.number="emitter.particle_height" class="slider"  type="range" min="0.01" max="1.0" step="0.05"></div>
-                      <div><span class="left_tag">DirX: {{emitter.dirX0}}</span> <input v-model.number="emitter.dirX0" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
-                      <div><span class="left_tag">Range: {{emitter.dirX1}}</span> <input v-model.number="emitter.dirX1" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
-                      <div><span class="left_tag">DirY: {{emitter.dirY0}}</span> <input v-model.number="emitter.dirY0" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
-                      <div><span class="left_tag">Range: {{emitter.dirY1}}</span> <input v-model.number="emitter.dirY1" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
+                      <div><span class="left-tag">Width:</span> <input v-model.number="emitter.particle_width" class="slider"  type="range" min="0.01" max="1.0" step="0.05"></div>
+                      <div><span class="left-tag">Height:</span> <input v-model.number="emitter.particle_height" class="slider"  type="range" min="0.01" max="1.0" step="0.05"></div>
+                      <div><span class="left-tag">DirX: {{emitter.dirX0}}</span> <input v-model.number="emitter.dirX0" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
+                      <div><span class="left-tag">Range: {{emitter.dirX1}}</span> <input v-model.number="emitter.dirX1" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
+                      <div><span class="left-tag">DirY: {{emitter.dirY0}}</span> <input v-model.number="emitter.dirY0" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
+                      <div><span class="left-tag">Range: {{emitter.dirY1}}</span> <input v-model.number="emitter.dirY1" class="slider" type="range" min="-1.0" max="1.0" step="0.1"></div>
                       <h4>Start Color:</h4>
-                        <div><span class="left_tag">Red: {{emitter.start_color[0]}}</span> <input v-model.number="emitter.start_color[0]" class="slider black_to_red" type="range" min="0.0" max="1.0" step="0.05"></div>
-                        <div><span class="left_tag">Green: {{emitter.start_color[1]}}</span> <input v-model.number="emitter.start_color[1]" class="slider black_to_green" type="range" min="0.0" max="1.0" step="0.05"></div>
-                        <div><span class="left_tag">Blue: {{emitter.start_color[2]}}</span> <input v-model.number="emitter.start_color[2]" class="slider black_to_blue" type="range" min="0.0" max="1.0" step="0.05"></div>
-                        <div><span class="left_tag">Alpha: {{emitter.start_color[3]}}</span> <input v-model.number="emitter.start_color[3]" class="slider black_to_white" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left-tag">Red: {{emitter.start_color[0]}}</span> <input v-model.number="emitter.start_color[0]" class="slider black-to-red" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left-tag">Green: {{emitter.start_color[1]}}</span> <input v-model.number="emitter.start_color[1]" class="slider black-to-green" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left-tag">Blue: {{emitter.start_color[2]}}</span> <input v-model.number="emitter.start_color[2]" class="slider black-to-blue" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left-tag">Alpha: {{emitter.start_color[3]}}</span> <input v-model.number="emitter.start_color[3]" class="slider black-to-white" type="range" min="0.0" max="1.0" step="0.05"></div>
                       <h4>End Color:</h4>
-                        <div><span class="left_tag">Red: {{emitter.end_color[0]}}</span> <input v-model.number="emitter.end_color[0]" class="slider black_to_red" type="range" min="0.0" max="1.0" step="0.05"></div>
-                        <div><span class="left_tag">Green: {{emitter.end_color[1]}}</span> <input v-model.number="emitter.end_color[1]" class="slider black_to_green" type="range" min="0.0" max="1.0" step="0.05"></div>
-                        <div><span class="left_tag">Blue: {{emitter.end_color[2]}}</span> <input v-model.number="emitter.end_color[2]" class="slider black_to_blue" type="range" min="0.0" max="1.0" step="0.05"></div>
-                        <div><span class="left_tag">Alpha: {{emitter.end_color[3]}}</span>  <input v-model.number="emitter.end_color[3]" class="slider black_to_white" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left-tag">Red: {{emitter.end_color[0]}}</span> <input v-model.number="emitter.end_color[0]" class="slider black-to-red" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left-tag">Green: {{emitter.end_color[1]}}</span> <input v-model.number="emitter.end_color[1]" class="slider black-to-green" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left-tag">Blue: {{emitter.end_color[2]}}</span> <input v-model.number="emitter.end_color[2]" class="slider black-to-blue" type="range" min="0.0" max="1.0" step="0.05"></div>
+                        <div><span class="left-tag">Alpha: {{emitter.end_color[3]}}</span>  <input v-model.number="emitter.end_color[3]" class="slider black-to-white" type="range" min="0.0" max="1.0" step="0.05"></div>
                     </div>
                 </div></transition></div>`,
     data() {
         e = new Emitter();
-        var canvas = document.getElementById("glCanvas").__vue__.$data;
-        var t = canvas.textures;
-        canvas.emitters[canvas.emitters.length] = e;
+        var canvas = document.getElementById("glCanvas").__vue__.$data;  //Getting $data of canvas so that we can add emitters there
+        var t = canvas.textures;                                         //getting textures that canvas has loaded
+        canvas.emitters[canvas.emitters.length] = e;                     //pushing this menus emitter to canvas emitter list
         return {
             drag: false,
             position: {x : 0 , y : 0},
@@ -67,14 +67,29 @@ var My_Menu = {
         };
     },
 
+
+    /**
+      * Mounting menu and starting animation by setting show to true
+    */
     mounted : function() {
       this.show = true;
     },
 
     methods: {
+
+
+        /**
+          * Stop moving the menu
+          * @param {MouseEvent} event Mouse event info
+        */
         stopDrag: function(event){
             this.drag = false;
         },
+
+        /**
+          * Start moving the menu
+          * @param {MouseEvent} event Mouse event info
+        */
         startDrag: function(event){
             this.drag = true;
             var menu = document.getElementById(this.title);
@@ -83,6 +98,11 @@ var My_Menu = {
             this.position.y = rect.top - event.clientY;
             this.position.x = rect.left - event.clientX;
         },
+
+        /**
+          * Move menu when drag is true
+          * @param {MouseEvent} event Mouse event info
+        */
         move: function(event){
             if(this.drag){
                 var menu = document.getElementById(this.title);
@@ -91,6 +111,9 @@ var My_Menu = {
             }
         },
 
+        /**
+          * Toggle particle part of menu
+        */
         hideParticle : function(event){
             var particle_menu = document.getElementById(this.title + "_par");
             particle_menu.hidden = !particle_menu.hidden;
@@ -98,12 +121,18 @@ var My_Menu = {
 
         },
 
+        /**
+          * Deleting emitter and this menu
+        */
         deleteEmitter : function(event){
           this.emitter.running = false;
           this.$el.parentNode.removeChild(this.$el);
 
         },
 
+        /**
+          * Checking that user has given valid spawn time
+        */
         spawnTimeValid : function(){
           var error_box = document.getElementById("errorBox");
           while(error_box.firstChild){
@@ -158,6 +187,10 @@ Vue.component('gl_canvas',{
             then : 0,
         };
     },
+
+    /**
+      * Mounting gl_canvas and starting to load images and names for those images
+    */
     mounted  : function(){
       var canvas = document.getElementById("glCanvas");
       this.gl = canvas.getContext("webgl"); //creating webgl context
@@ -172,18 +205,18 @@ Vue.component('gl_canvas',{
       }
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("GET", "https://picsum.photos/list", true);
+      xmlhttp.open("GET", "https://picsum.photos/list", true);  //Images list from picsum
       xmlhttp.onreadystatechange = (function(self) {
           return function(){
               if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
                   var jsonObj = JSON.parse(xmlhttp.responseText);
                   var i = 0;
                   var counter = 0;
-                  while(self.$data.textures.length < 5){
-                      i = Math.floor(Math.random() * jsonObj.length);
+                  while(self.$data.textures.length < 5){         //We want get only 5 textures
+                      i = Math.floor(Math.random() * jsonObj.length);   //random number that is between 0 and images list lenght
                       var xmlhttp2 = new XMLHttpRequest();
 
-                      xmlhttp2.open("GET", "https://api.imagga.com/v2/tags?image_url=" + "https://picsum.photos/1024/1024?image=" + jsonObj[i].id);
+                      xmlhttp2.open("GET", "https://api.imagga.com/v2/tags?image_url=" + "https://picsum.photos/1024/1024?image=" + jsonObj[i].id); //Using imagga to recognize that image is about
                       xmlhttp2.setRequestHeader("accept","application/json");
                       xmlhttp2.setRequestHeader("authorization","Basic YWNjX2JiODIxNjM3MDI5OWU2MjplY2YwMDliM2QyN2MzZDliYTlmMGMyZGNlMDk5ODY4Zg==");
 
@@ -191,9 +224,9 @@ Vue.component('gl_canvas',{
                           return function(){
                               if(self.readyState == 4 && self.status == 200){
                                   var jsonObj2 = JSON.parse(self.responseText);
-                                  canvas.__vue__.textures[i].name = jsonObj2.result.tags[0].tag.en;
+                                  canvas.__vue__.textures[i].name = jsonObj2.result.tags[0].tag.en;  //Most likely english word to descripe this images
                               }
-                              else if(self.status == 403){
+                              else if(self.status == 403){ //We probably send request to close to each other or we reach usage limit
                                 var error_box = document.getElementById("errorBox");
                                 sendErrorMessage("Failed to get texture name from imagga", error_box);
                               }
@@ -204,13 +237,13 @@ Vue.component('gl_canvas',{
                         return function(){
                           xmlhttp2.send();
                         }
-                      })(xmlhttp2), 1000 * counter);
+                      })(xmlhttp2), 1000 * counter); //Having timeout so that we don't pass too many at same time as free user
                       counter++;
                       self.$data.textures.push({name : "unknown", filename : jsonObj[i].filename, id : jsonObj[i].id,
                                                 opengl_id: self.loadTexture(self.$data.gl, "https://picsum.photos/1024/1024?image=" + jsonObj[i].id)});
                   }
 
-                  window.requestAnimationFrame(canvas.__vue__.drawFrame);
+                  window.requestAnimationFrame(canvas.__vue__.drawFrame);  //we should be ready to start rendering
               }
           }
       })(this);
@@ -219,8 +252,12 @@ Vue.component('gl_canvas',{
       this.gl.viewport(0,0,canvas.width,canvas.height); //setting viewport
       this.gl.enable(this.gl.BLEND); //enable blend
       this.gl.depthMask(false); //disable depth mask
-      this.gl.blendFuncSeparate(this.gl.SRC_ALPHA, this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA, this.gl.ONE); //setting blend function
+
+
+      //setting blend function that bend images to background
+      this.gl.blendFuncSeparate(this.gl.SRC_ALPHA, this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA, this.gl.ONE);
       this.gl.blendEquation(this.gl.FUNC_ADD);
+
 
       this.vertex_buffer = this.gl.createBuffer(); //creating buffer for verteces
       this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vertex_buffer); //using vertex buffer
@@ -242,10 +279,15 @@ Vue.component('gl_canvas',{
 
     },
     methods : {
+        /**
+          * Creating shaders
+        */
         createShader : function(){
 
             if(!this.gl){
-              //Error
+              var error_box = document.getElementById("errorBox");
+              sendErrorMessage("WebGlContext wasn't initiated or was deleted some reasong?", error_box);
+              return;
             }
 
             var vertCode =
@@ -303,10 +345,17 @@ Vue.component('gl_canvas',{
             };
 
         },
+
+        /**
+          * Draw frame
+          * @param {Number} now Current time
+        */
         drawFrame : function(now){
 
             if(!this.gl){
-              //Error
+              var error_box = document.getElementById("errorBox");
+              sendErrorMessage("WebGlContext wasn't initiated or was deleted some reasong?", error_box);
+              return;
             }
 
             now *= 0.001; //make sure now is nanoseconds
@@ -318,12 +367,7 @@ Vue.component('gl_canvas',{
             this.gl.clear(this.gl.COLOR_BUFFER_BIT); //clear color buffer
 
 
-
-
-
             this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, this.index_buffer); //set indices
-
-
             this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.texture_buffer); //binds texture coordinates
             this.gl.vertexAttribPointer(this.shader.textureCoord, 2, this.gl.FLOAT, false, 0,0); //set shader textureCoord
             this.gl.enableVertexAttribArray(this.shader.textureCoord); //enable textureCoord
@@ -336,10 +380,6 @@ Vue.component('gl_canvas',{
             this.gl.activeTexture(this.gl.TEXTURE0); //active texture 0
             this.gl.bindTexture(this.gl.TEXTURE_2D, this.textures[0].opengl_id); //bind current texture
             this.gl.uniform1i(this.shader.texture_uniform, 0);
-
-
-
-
 
 
             for(var ii = 0; ii < this.emitters.length; ii++){
@@ -393,6 +433,12 @@ Vue.component('gl_canvas',{
             window.requestAnimationFrame(this.drawFrame); //request next frame
 
         },
+
+        /**
+          * Load texture to graphics card
+          * @param {WebGLRenderingContext} gl WebGL context
+          * @param {String} url Image url that we want to load
+        */
         loadTexture : function(gl, url) {
             const texture = gl.createTexture(); //create texture
             gl.bindTexture(gl.TEXTURE_2D, texture); //bind texture for use
@@ -429,15 +475,22 @@ var app = new Vue({
         counter : 0,
         componentClass : undefined,
     },
+    /**
+      * Mounting the app and creaing menu class
+    */
     mounted : function(){
-        this.componentClass = Vue.extend(My_Menu);
-        setTimeout(this.setMenu, 100);
+        this.componentClass = Vue.extend(My_Menu); //create component class
+        setTimeout(this.setMenu, 100); //wait little bit so that textures maybe ready
     },
     methods: {
+
+      /**
+        * Checking if we can create menu and creating menu if we can
+      */
         setMenu : function(){
           var textures = document.getElementById("glCanvas").__vue__.$data.textures;
 
-          if(textures.length < 5){
+          if(textures.length < 5){ //if textures are not ready let's wait little longer
             setTimeout(this.setMenu, 100);
             return
           }
@@ -445,6 +498,9 @@ var app = new Vue({
           this.createMenu();
         },
 
+        /**
+          * Create menu and emitter
+        */
         createMenu : function(){
           var instance = new this.componentClass({
               propsData: {title : this.counter}
@@ -453,11 +509,16 @@ var app = new Vue({
           instance.$mount();
           this.$el.appendChild(instance.$el);
         },
+
+        /**
+          * Passing mouse movement to menus
+          * @param {MouseEvent} event Mouse event info
+        */
         move : function(event){
             menus = document.getElementsByClassName("menu");
             if(menus){
                 for(var i = 0; i < menus.length; i++){
-                    if(menus[i].__vue__.move != undefined)
+                    if(menus[i].__vue__.move != undefined) //if menu bugged we don't want to try to call function that doesn't exist
                       menus[i].__vue__.move(event);
                 }
             }
